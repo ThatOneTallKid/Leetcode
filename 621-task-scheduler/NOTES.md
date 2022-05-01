@@ -1,1 +1,2 @@
-​
+We can schedule the first M-1 occurrences of E, each E will be followed by at least N CPU cycles in between successive schedules of E
+Total CPU cycles after scheduling M-1 occurrences of E = (M-1) * (N + 1) // 1 comes for the CPU cycle for E itself
