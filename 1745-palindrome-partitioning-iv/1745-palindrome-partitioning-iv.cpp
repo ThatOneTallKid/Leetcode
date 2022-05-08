@@ -1,18 +1,21 @@
 class Solution {
 public:
-    bool isPal[2000][2000] = {};
-bool checkPartitioning(string s) {
-    for (int i = s.size() - 1; i >= 0; --i) {
-        for (int j = i; j < s.size(); ++j)
-            isPal[i][j] = s[i] == s[j] ? i + 1 >= j || isPal[i + 1][j - 1] : false;
-    }
-    for (auto i = 2; i < s.size(); ++i) {
-        if (isPal[i][s.size() - 1]) {
-            for (auto j = 1; j < i; ++j)
-                if (isPal[j][i - 1] && isPal[0][j - 1])
-                    return true;
-        }
-    }
-    return false;
-}
+   vector<vector<int>> dp1;
+	bool isPalindrome(string& s, int i, int j) {
+		if (i >= j) return true;
+		if (dp1[i][j] != -1) return dp1[i][j];
+		if (s[i] == s[j]) return dp1[i][j] = isPalindrome(s, i + 1, j - 1);
+		return dp1[i][j] = false;
+	}
+	bool checkPartitioning(string s) {
+		int n = s.size();
+		dp1.resize(n,vector<int> (n,-1));
+		for(int i=0;i<n;i++){
+			for(int j=i+1;j<n-1;j++){
+				if(isPalindrome(s,0,i) && isPalindrome(s,i+1,j) && isPalindrome(s,j+1,n-1))
+					return true;
+			}
+		}
+		return false;
+	}
 };
