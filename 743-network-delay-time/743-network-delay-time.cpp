@@ -1,9 +1,9 @@
 class Solution {
 public:
     int networkDelayTime(vector<vector<int>>& times, int n, int k) {
-    // bellman ford algorithm
+        // bellman ford algorithm
         
-    vector<int> dist(n+1, INT_MAX);
+        vector<int> dist(n+1, INT_MAX);
         dist[k] = 0;
         for(int i =0;i<n;i++) {
             for(auto e : times) {
