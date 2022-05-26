@@ -1,5 +1,9 @@
 class Solution {
 public:
+    // if there is a cycle in the directed graph then we can say that we can't finish all the courses, else otherwise.
+    
+    
+    // using 2 vis arrays so that we can detect a cycle.
     bool check(int i, vector<vector<int>> &adj, vector<bool> &vis, vector<bool> &dfsvis) {
         vis[i] = 1;
         dfsvis[i] = 1;
