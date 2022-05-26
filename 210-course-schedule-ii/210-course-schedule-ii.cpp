@@ -1,5 +1,9 @@
 class Solution {
 public:
+    // a simple solution is just finding the topological sort keeping cycle detection in mind.
+    // but doing 2 dfs for both the topo and cycle detection can be costly.
+    
+    // so, the optimal approach is to take help from the devised topological sort vector/array.
     void topo(int node, vector<bool> &vis, stack<int> &st, vector<vector<int>> &adj) {
         vis[node] = 1;
         for(auto it : adj[node]) {
@@ -15,7 +19,8 @@ public:
         for(int i=0;i<res.size();i++) {
             pos[res[i]] = i;
         }
-        
+        // checking if there is a cycle with the help of the devised topological sort array.
+        // if position of the child is before than that of the parent then cycle exists.
         for(int i =0;i<n;i++) {
             for(int v : adj[i]) {
                 if(pos[v] < pos[i])
